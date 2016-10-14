@@ -25,9 +25,10 @@ div nav ul li{
     border: 1px solid #dddddd;
     display: block;
     color: #000;
-    padding: 8px 16px;
-    font-size: 18px;
+    padding: 16px;
+    font-size: 1.5em;
     text-decoration: none;
+    line-height: 70%;
 }
 
 /* Change the link color on hover */
@@ -37,7 +38,7 @@ div nav ul li:hover {
 }
 
 div nav ul li p {
-    font-size: 12px;
+    font-size: 0.75em;
 }
 
 div header {
@@ -62,7 +63,7 @@ div header div ul {
 
 div h1 {
 	padding: 4px 4px;
-	font-size: 24;
+	font-size: 2em;
 }
 
 .tableDiv {
