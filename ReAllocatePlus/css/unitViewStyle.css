@@ -27,11 +27,20 @@ div nav ul li{
     padding: 8px 16px;
     font-size: 18px;
     text-decoration: none;
+	border-bottom: solid 1px gray;
+}
+
+#subItem{
+	font-size: 14px;
+}
+
+.tableCheckbox{
+	text-align: center;
 }
 
 /* Change the link color on hover */
 div nav ul li:hover {
-    background-color: rgb(135, 174, 237);
+    background-color: #004185;
     color: white;
 }
 *{
@@ -39,7 +48,7 @@ div nav ul li:hover {
 }
 
 div header {
-	clear: left,
+	clear: left;
 	padding: 1em
 }
 
@@ -61,7 +70,7 @@ div header div ul {
 
 div h1 {
 	padding: 8px 4px;
-	font-size: 24;
+	font-size: 24px;
 }
 
 .tableDiv {

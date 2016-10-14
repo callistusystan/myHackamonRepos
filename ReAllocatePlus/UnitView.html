@@ -18,7 +18,7 @@
             </div>
         </header>
 		
-		<nav>
+		<nav id = "unitsNav">
 			<ul>
 				<li>
 					FIT1357
@@ -35,10 +35,11 @@
 		<section>		
 			<h1>FIT2043</h1>
 
-			<table class="tableDiv" style="width:100%">
+			<div id = "tableDiv"> </div>
+			<!--<table class="tableDiv" id="tableDiv" style="width:100%">
 				<tr>
 					<th></th>
-					<th>Activity</th> 
+					<th>Activity</th>
 					<th>Day</th>
 					<th>Time</th>
 					<th>Campus</th>
@@ -49,19 +50,8 @@
 					<th>Request Swap</th>
 				</tr>
 				
-				<tr>
-					<td class="center" style="color: green">✔</td>
-					<td>01</td>
-					<td>Mon</td> 
-					<td>11:00</td>
-					<td>CL</td>
-					<td>CL_14Rnf/G12B</td>
-					<td>Robyn Mcnamara</td>
-					<td>2 hrs</td>
-					<td>1/8-19/9, 3/10-17/10</td>
-					<td class="center"><input type="checkbox" disabled></td>
-				</tr>
-				
+				<div id = "unitRow"></div>
+
 				<tr>
 					<td class="center"><a href="#">Select</a></td>
 					<td>02</td>
@@ -87,11 +77,17 @@
 					<td>3/8-21/9, 5/10-19/10</td>
 					<td class="center"><input type="checkbox"></td>
 				</tr>
-			</table>
+			</table>-->
 			
 			<button>Remove all requests</button>
 			<button>Update requests</button>
-		<section>
+		</section>
+
 	</div>
-</body>
+
+	<script src="js/navbar.js"></script>
+	<script src="js/unitDetails.js"></script>
+
+
+	</body>
 </html>
