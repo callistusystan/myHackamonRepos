@@ -1,0 +1,80 @@
+html {
+	font-size: 16px;
+	line-height: 24px;
+	font-family: "Lato", sans-serif;
+}
+
+div header img {
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+div header div {
+	background-color: #004185;
+	height: 5%;
+	padding: 4px;
+}
+
+div header div ul {
+	list-style-type: none;
+	vertical-align: middle;
+}
+
+div h1 {
+	padding: 8px 4px;
+	font-size: 24;
+}
+
+.tableDiv {
+	margin: 1% auto;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+	padding: 4px;
+}
+
+th {
+	background-color: #e2edf6;
+	text-align: center;
+}
+
+.center {
+	text-align: center;
+}
+
+input {
+	padding: auto;
+}
+
+button {
+	float: right; 
+	border: 0; 
+	width: auto; 
+	margin: 4px 0px 0px 12px;
+	padding: 10px; 
+	font-size: 14px;
+	background-color: #283d68;
+	color: white;
+}
+
+button {
+	float: right; 
+	border: 0; 
+	width: 150px; 
+	padding: 10px; 
+	font-size: 14px;
+	background-color: #245c96;
+	color: white;
+}
+
+button:hover  {
+	background-color: #004185;
+}

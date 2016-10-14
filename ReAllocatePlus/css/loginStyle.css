@@ -1,0 +1,62 @@
+html {
+	font-size: 16px;
+	line-height: 24px;
+	font-family: "Lato", sans-serif;
+}
+
+div header img {
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+div header div {
+	background-color: #004185;
+	height: 5%;
+	padding: 4px;
+}
+
+div header div ul {
+	list-style-type: none;
+	vertical-align: middle;
+}
+
+div div form {
+	 width:600px;
+	 margin:10% auto 10%;
+	 padding: 16px;
+	 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+div div form h1 {
+	 text-align:center;
+	 font-size: 24px;
+}
+
+div div form p {
+	font-weight: bold;
+}
+
+div div form input {
+	outline: 0;
+	background: #f2f2f2;
+	width: 100%; 
+	border: 0;
+	margin: 0 0 15px;
+	padding: 15px;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+
+div div form button {
+	float: right; 
+	border: 0; 
+	width: 150px; 
+	padding: 10px; 
+	font-size: 14px;
+	background-color: #245c96;
+	color: white;
+}
+
+button:hover  {
+	background-color: #004185;
+}
