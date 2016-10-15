@@ -77,6 +77,7 @@ function populateMenu(array) {
                 var title = document.createElement("p");
                 title.textContent="You have been placed in the queue. You will be reallocated when one of your requested classes becomes available.";
                 section.appendChild(title);
+                httpGetAsync("http://http://118.138.14.160:3000/swap", function())
             })
             section.appendChild(button2);
 

@@ -88,8 +88,8 @@
       <file leaf-file-name="navbar.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/navbar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="875">
-              <caret line="77" column="149" selection-start-line="77" selection-start-column="149" selection-end-line="77" selection-end-column="149" />
+            <state relative-caret-position="925">
+              <caret line="79" column="47" selection-start-line="79" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -276,12 +276,12 @@
       <workItem from="1476426448279" duration="2093000" />
       <workItem from="1476440895956" duration="613000" />
       <workItem from="1476446829795" duration="12000" />
-      <workItem from="1476456873890" duration="27550000" />
+      <workItem from="1476456873890" duration="28357000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44661000" />
+    <option name="totallyTimeSpent" value="45468000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="2182" height="1402" extended-state="6" />
@@ -529,8 +529,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/navbar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="77" column="149" selection-start-line="77" selection-start-column="149" selection-end-line="77" selection-end-column="149" />
+        <state relative-caret-position="925">
+          <caret line="79" column="47" selection-start-line="79" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
         </state>
       </provider>
