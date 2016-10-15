@@ -1,0 +1,18 @@
+diff a/ReAllocatePlus/UnitView.html b/ReAllocatePlus/UnitView.html	(rejected hunks)
+@@ -29,6 +29,16 @@
+ 					FIT3040
+ 					<p>Studio 2</p>
+ 				</li>
++				
++				<li>
++					FIT3040
++					<p>Studio 2</p>
++				</li>
++				
++				<li>
++					FIT3040
++					<p>Studio 2</p>
++				</li>
+ 			</ul>
+ 		</nav>
+ 		

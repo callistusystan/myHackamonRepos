@@ -1,0 +1,23 @@
+diff a/ReAllocatePlus/css/unitViewStyle.css b/ReAllocatePlus/css/unitViewStyle.css	(rejected hunks)
+@@ -27,11 +27,20 @@
+     padding: 8px 16px;
+     font-size: 18px;
+     text-decoration: none;
++	border-bottom: solid 1px gray;
++}
++
++#subItem{
++	font-size: 14px;
++}
++
++.tableCheckbox{
++	text-align: center;
+ }
+ 
+ /* Change the link color on hover */
+ div nav ul li:hover {
+-    background-color: rgb(135, 174, 237);
++    background-color: #004185;
+     color: white;
+ }
+ *{

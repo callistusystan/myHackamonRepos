@@ -4,28 +4,29 @@ html {
 	font-family: "Lato", sans-serif;
 }
 
-nav {
+.nav {
 	float: left;
 	max-width: 200px;
 	margin: 0 auto;
 	padding: 1em;
 }
 
-div nav ul {
+div .nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    height:80%;
+    height:auto;
     position: absolute;
     width: 200px;
-    background-color: rgb(211, 228, 255);
+    background-color: #f1f6fa;
 }
 
-div nav ul li{
+div .nav ul li{
+    border: 1px solid #dddddd;
     display: block;
     color: #000;
-    padding: 8px 16px;
-    font-size: 18px;
+    padding: 16px;
+    font-size: 1.5em;
     text-decoration: none;
 	border-bottom: solid 1px gray;
 }
@@ -36,20 +37,23 @@ div nav ul li{
 
 .tableCheckbox{
 	text-align: center;
+    line-height: 70%;
 }
 
 /* Change the link color on hover */
-div nav ul li:hover {
+div .nav ul li:hover {
     background-color: #004185;
     color: white;
 }
-*{
-    font-family: 'Lato', sans-serif;
+
+div .nav ul li p {
+    font-size: 0.75em;
 }
 
 div header {
 	clear: left;
-	padding: 1em
+	padding: 1em;
+	clear: left;
 }
 
 div header img {
@@ -71,10 +75,12 @@ div header div ul {
 div h1 {
 	padding: 8px 4px;
 	font-size: 24px;
+	padding: 4px 4px;
+	font-size: 2em;
 }
 
 .tableDiv {
-	margin: 1% auto;
+	margin: 228px;
 }
 
 table {
@@ -105,21 +111,12 @@ input {
 button {
 	float: right; 
 	border: 0; 
-	width: auto; 
-	margin: 4px 0px 0px 12px;
+	width: 160px;
+	margin-top:1em;
+	margin-left: 1em;
 	padding: 10px; 
 	font-size: 14px;
 	background-color: #283d68;
-	color: white;
-}
-
-button {
-	float: right; 
-	border: 0; 
-	width: 150px; 
-	padding: 10px; 
-	font-size: 14px;
-	background-color: #245c96;
 	color: white;
 }
 
@@ -129,5 +126,5 @@ button:hover  {
 
 div section {
 	margin-left: 228px;
-	padding: 0px 10px;
+	margin-right: 1em;
 }
