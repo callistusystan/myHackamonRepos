@@ -48,7 +48,6 @@ function populateMenu(array) {
 
             var div = document.getElementById("dashboardHolder");
 
-            console.log(div);
             var section = document.createElement("section");
             section.id = 'dashboard';
             div.appendChild(section);
@@ -66,6 +65,19 @@ function populateMenu(array) {
 
             var button2 = document.createElement("button");
             button2.textContent="Update Requests";
+            button2.addEventListener("click",function(){
+                var element = document.getElementById("dashboard");
+                element.parentNode.removeChild(element);
+
+                var div = document.getElementById("dashboardHolder");
+
+                var section = document.createElement("section");
+                section.id = 'dashboard';
+                div.appendChild(section);
+                var title = document.createElement("p");
+                title.textContent="You have been placed in the queue. You will be reallocated when one of your requested classes becomes available.";
+                section.appendChild(title);
+            })
             section.appendChild(button2);
 
             httpGetAsync("http://118.138.14.160:3000/classes?unit="+item.target.textContent.substring(0,7), function(data){
