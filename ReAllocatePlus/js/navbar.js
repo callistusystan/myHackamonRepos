@@ -18,7 +18,7 @@
     classes: ["class1", "class2"],
     required: ["nothing"]
 }];*/
-httpGetAsync("http://118.138.14.160:3000/units", function(data){
+httpGetAsync("https://reallocateplus.herokuapp.com/units", function(data){
     console.log(data);
     document.getElementById('unitsNav').appendChild(populateMenu(JSON.parse(data)))});
 
@@ -77,11 +77,11 @@ function populateMenu(array) {
                 var title = document.createElement("p");
                 title.textContent="You have been placed in the queue. You will be reallocated when one of your requested classes becomes available.";
                 section.appendChild(title);
-                httpGetAsync("http://118.138.14.160:3000/swap", function(){});
+                httpGetAsync("https://reallocateplus.herokuapp.com/swap", function(){});
             })
             section.appendChild(button2);
 
-            httpGetAsync("http://118.138.14.160:3000/classes?unit="+item.target.textContent.substring(0,7), function(data){
+            httpGetAsync("https://reallocateplus.herokuapp.com/classes?unit="+item.target.textContent.substring(0,7), function(data){
                 console.log(data);
                 document.getElementById('tableDiv').appendChild(populateUnitTable(JSON.parse(data), student))});
         });
@@ -102,4 +102,3 @@ function handleClick()
     alert("hi");
     //   document.getElementById()
 }
-

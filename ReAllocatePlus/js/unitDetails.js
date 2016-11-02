@@ -25,11 +25,11 @@
     ]*/
 
 var student;
-httpGetAsync("http://118.138.14.160:3000/students", function(data){
+httpGetAsync("https://reallocateplus.herokuapp.com/students", function(data){
     student = JSON.parse(data)[0];
     console.log(student)});
 
-httpGetAsync("http://118.138.14.160:3000/classes", function(data){
+httpGetAsync("https://reallocateplus.herokuapp.com/classes", function(data){
     console.log(data);
     document.getElementById('tableDiv').appendChild(populateUnitTable(JSON.parse(data), student))});
 
