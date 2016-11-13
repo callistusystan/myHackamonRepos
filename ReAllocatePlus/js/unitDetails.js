@@ -160,7 +160,7 @@ function getAvailability(unit, student)
         }
         else{
             var link = document.createElement('a');
-            link.appendChild(document.createTextNode('Select'));
+            link.appendChild(document.createTextNode('Available'));
             link.href = "#";
             status.appendChild(link);
         }
