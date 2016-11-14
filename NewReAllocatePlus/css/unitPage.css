@@ -1,0 +1,135 @@
+#MonashLogo {
+    background-color: white;
+    padding: 15px;
+}
+
+#ReAllocateNavBar {
+    background-color: #004185;
+    height: 59px;
+}
+
+#ReAllocateNavBar h1 {
+    line-height: 50%;
+    color: white;
+    font-style: italic;
+}
+
+.nav.navbar-nav {
+    margin: auto;
+    color: white;
+    height: 59px;
+    line-height: 59px;
+}
+
+.nav.navbar-nav li:hover {
+    background-color: #012e5d;
+    color: white;
+}
+
+.nav.navbar-nav li a {
+    border: 0;
+    font-size: 14px;
+    background-color: #004185;
+    color: white;
+    height: 57px;
+    line-height: 22px;
+}
+
+.nav.navbar-nav li a:hover {
+    color:white;
+}
+
+.nav.navbar-nav li a:focus {
+    color:white;
+}
+
+#profile, #rightSection {
+    border: 1px solid #a9b9c5;
+    border-radius: 3px;
+}
+
+#enrolment {
+    margin-top: 15px;
+    border: 1px solid #a9b9c5;
+    border-radius: 3px;
+}
+
+#enrolment h3 {
+    color: white;
+    margin: 0;
+    padding: 10px 15px;
+    height: 46px;
+    background-color: #245c96;
+}
+
+#profilePic {
+    padding: 2%;
+}
+
+#profileDetails {
+    text-transform: uppercase;
+}
+
+#units {
+    margin-bottom: 0;
+}
+
+.unit {
+    background-color: #f1f6fa;
+}
+
+.unit h4 {
+    color: #004185;
+    font-weight: bold;
+    margin: 0px;
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
+.unit h5 {
+    color: #004185;
+    padding: 0 15px;
+}
+
+.unit a {
+    color: #0000EE;
+}
+
+#rightSection {
+    height: 722px;
+    color: #004185;
+    padding: 0;
+}
+
+#rightSection .unitHeader {
+    margin: 0px;
+    padding: 15px 15px;
+    background-color: #245c96;
+}
+
+#rightSection .unitHeader h4 {
+    margin: 0;
+    color: white;
+}
+
+#rightSection .container-fluid .table-responsive table {
+    margin-top: 15px;
+}
+
+#rightSection .container-fluid .table-responsive table tr th {
+    background-color: #e2edf6;
+}
+
+#rightSection button {
+     float: right;
+     border: 0;
+     padding: 10px;
+     margin-left: 15px;
+     font-size: 14px;
+     background-color: #245c96;
+     color: white;
+ }
+
+#rightSection button:hover  {
+    background-color: #004185;
+}
