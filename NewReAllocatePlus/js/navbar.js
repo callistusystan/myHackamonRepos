@@ -3,6 +3,12 @@
  * Modified by Callistus on 15/11/2016
  */
 
+// for now, get the first student
+var student;
+httpGetAsync("https://reallocateplus.herokuapp.com/students", function(data){
+    student = JSON.parse(data)[0];
+    console.log(student)});
+
 httpGetAsync("https://reallocateplus.herokuapp.com/units", function(data){
     console.log(data);
     populateMenu(JSON.parse(data))});
@@ -17,7 +23,13 @@ function httpGetAsync(theUrl, callback) {
     test.send(null);
     return test;
 }
-var getUnitClassesHttpRequest = null;
+
+function clearRightSection() {
+	var dashboard = document.getElementById("rightSection");
+	while (dashboard.firstChild) {
+		dashboard.removeChild(dashboard.firstChild);
+	}
+}
 
 function populateMenu(array) {
     for (var i = 0; i < array.length; i++) {
@@ -64,10 +76,7 @@ function populateMenu(array) {
 }
 
 function constructUnitView(mouse) {
-	var dashboard = document.getElementById("rightSection");
-	while (dashboard.firstChild) {
-		dashboard.removeChild(dashboard.firstChild);
-	}
+	clearRightSection();
 
 	// div unitHeader with 3 h4 tags
 	var unitHeader = document.createElement("div");
@@ -95,8 +104,10 @@ function constructUnitView(mouse) {
 		
 		var tableR = document.createElement("div");
 			tableR.className = "table-responsive";
+			tableR.id = "tableResponsive";
 			var tableB = document.createElement("table");
 				tableB.className = "table table-bordered";
+				tableB.id = "unitTable";
 			
 				var aTr = document.createElement("tr");
 					var aTh = document.createElement("th");
@@ -109,11 +120,11 @@ function constructUnitView(mouse) {
 					aTr.appendChild(aTh);
 					var aTh = document.createElement("th");
 						aTh.className = "col-md-1";
-						aTh.textContent = "Type";
+						aTh.textContent = "Day";
 					aTr.appendChild(aTh);
 					var aTh = document.createElement("th");
 						aTh.className = "col-md-1";
-						aTh.textContent = "Day";
+						aTh.textContent = "Type";
 					aTr.appendChild(aTh);
 					var aTh = document.createElement("th");
 						aTh.className = "col-md-1";
@@ -145,32 +156,125 @@ function constructUnitView(mouse) {
 	container.appendChild(tableR);
 			
 	document.getElementById("rightSection").appendChild(container);
+	
+	// populate table
+	httpGetAsync("https://reallocateplus.herokuapp.com/classes?unit=" + mouse.target.parentNode.getElementsByTagName("h4")[0].textContent, function (data) {
+		console.log(data);
+		populateUnitTable(JSON.parse(data), student);
+	});
 }
 
-function deleteOldDashboard()
-{
-    var element = document.getElementById("dashboard");
-    element.parentNode.removeChild(element);
-
-    var div = document.getElementById("dashboardHolder");
-
-    var section = document.createElement("section");
-    section.id = 'dashboard';
-    div.appendChild(section);
-
-    var tableDiv = document.createElement("div");
-    tableDiv.id = "tableDiv";
-    section.appendChild(tableDiv);
-
-    var buttonsSection = document.getElementById("buttons");
-
-    var numberOfButtons =buttonsSection.childNodes.length;
-    while(numberOfButtons > 0) {
-        var child = buttonsSection.childNodes[numberOfButtons - 1];
-        buttonsSection.removeChild(child);
-        numberOfButtons--;
+function populateUnitTable(array, student) {
+	//loop through the units
+    for (var i = 0; i < array.length; i++) {
+        var aTr = document.createElement('tr');
+			//checkbox status
+			//status
+			aTr.appendChild(getAvailability(array[i], student));
+			//activity number
+			var item = document.createElement('td');
+			item.appendChild(document.createTextNode((i+1)));
+			aTr.appendChild(item);
+			//Day
+			var item = document.createElement('td');
+			item.appendChild(document.createTextNode(array[i].day));
+			aTr.appendChild(item);
+			//Type
+			var item = document.createElement('td');
+			item.appendChild(document.createTextNode(array[i].type));
+			aTr.appendChild(item);
+			//Time
+			var item = document.createElement('td');
+			item.appendChild(document.createTextNode(array[i].time));
+			aTr.appendChild(item);
+			//Campus
+			var item = document.createElement('td');
+			item.appendChild(document.createTextNode(array[i].campus));
+			aTr.appendChild(item);
+			//Location
+			var item = document.createElement('td');
+			item.appendChild(document.createTextNode(array[i].location));
+			aTr.appendChild(item);
+			//Staff
+			var item = document.createElement('td');
+			item.appendChild(document.createTextNode(array[i].staff));
+			aTr.appendChild(item);
+			//Duration
+			var item = document.createElement('td');
+			item.appendChild(document.createTextNode(array[i].duration));
+			aTr.appendChild(item);
+			aTr.appendChild(getCheckbox(array[i], student));
+		
+		document.getElementById("unitTable").appendChild(aTr);
     }
-    makeButtons();
+	var aButton = document.createElement("button");
+		var aA = document.createElement("a");
+			aA.href="#";
+			aA.setAttribute("style", "text-decoration: none;color:white");
+			aA.textContent = "Remove All Requests";
+		
+		aButton.appendChild(aA);
+	document.getElementById("tableResponsive").appendChild(aButton);
+	
+	var aButton = document.createElement("button");
+		var aA = document.createElement("a");
+			aA.href="#";
+			aA.setAttribute("style", "text-decoration: none;color:white");
+			aA.textContent = "Submit Requests";
+		
+		aButton.appendChild(aA);
+	document.getElementById("tableResponsive").appendChild(aButton);
+	
+}
+
+function getAvailability(unit, student) {
+    var status = document.createElement('td');
+	
+	var aP = document.createElement("p");
+
+    for (var i =0; i < student.classes.length; i++) {
+        if (unit.uuid == student.classes[i]) {
+			aP.textContent = "Allocated";
+			aP.setAttribute("style", "color:green;text-align:center;");
+            status.appendChild(aP);
+            return status;
+        }
+    }
+
+    if (unit.noStudents >= unit.capacity){
+			aP.textContent = "Full";
+			aP.setAttribute("style", "color:red;text-align:center;");
+            status.appendChild(aP);
+            return status;
+			
+        }
+        else{
+            var link = document.createElement('a');
+			link.setAttribute("style", "text-align:center;");
+            link.appendChild(document.createTextNode('Available'));
+            link.href = "#";
+            status.appendChild(link);
+        }
+    return status;
+}
+
+function getCheckbox(unit, student) {
+    var status = document.createElement('td');
+    status.className = "center";
+    var checkbox = document.createElement('input');
+    checkbox.type = "checkbox";
+
+
+    if (unit.noStudents < unit.capacity){
+        checkbox.disabled = true;
+    }
+    for (var i =0; i < student.classes.length; i++) {
+        if (unit.uuid == student.classes[i]) {
+            checkbox.disabled = true;
+        }
+    }
+    status.appendChild(checkbox);
+    return status;
 }
 
 function makeButtons()
@@ -202,17 +306,4 @@ function makeButtons()
     })
     section.appendChild(button2);
 
-
-
-}
-function timer()
-{
-
-    return true;
-}
-
-function handleClick()
-{
-    alert("hi");
-    //   document.getElementById()
 }

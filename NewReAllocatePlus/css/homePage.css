@@ -139,13 +139,19 @@
 
 #rightSection .container-fluid .table-responsive table {
     margin: 15px 0px 15px 0px;
+	text-align: center;
+}
+
+#rightSection .container-fluid .table-responsive table tr th, #rightSection .container-fluid .table-responsive table tr td {
+	border-style: solid;
+	border-color: rgb(221, 221, 221);
+	border-width: 1px;
+	padding: 0;
+	text-align: center;
 }
 
 #rightSection .container-fluid .table-responsive table tr th {
     background-color: #e2edf6;
-	border-style: solid;
-	border-color: rgb(221, 221, 221);
-	border-width: 1px;
 }
 
 #rightSection button {
@@ -160,4 +166,15 @@
 
 #rightSection button:hover  {
     background-color: #004185;
+}
+
+#rightSection .container-fluid .table-responsive table tr td a, #rightSection .container-fluid .table-responsive table tr td p {
+	text-align: center;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#rightSection .container-fluid .table-responsive table tr td a {
+    text-decoration: underline;
+	width: 100%;
 }
