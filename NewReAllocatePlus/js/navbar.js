@@ -266,6 +266,8 @@ function populateUnitTable(array, student, type) {
 		aA.textContent = "Remove All Requests";
 
 		aButton.appendChild(aA);
+		aButton.addEventListener("click", removeAllRequests);
+
 		document.getElementById("tableResponsive").appendChild(aButton);
 
 		var aButton = document.createElement("button");
@@ -315,6 +317,7 @@ function getCheckbox(unit, student) {
     status.className = "center";
     var checkbox = document.createElement('input');
     checkbox.type = "checkbox";
+	checkbox.className = "checkbox";
 
 
     if (unit.noStudents < unit.capacity){
@@ -327,6 +330,20 @@ function getCheckbox(unit, student) {
     }
     status.appendChild(checkbox);
     return status;
+}
+function removeAllRequests()
+{
+
+	var checkboxes =document.getElementsByClassName("checkbox");
+	
+	for(var i = 0; i < checkboxes.length; i++)
+	{
+		if(checkboxes[i].checked)
+		{
+			checkboxes[i].checked = false;
+		}
+	}
+
 }
 
 function makeButtons()
