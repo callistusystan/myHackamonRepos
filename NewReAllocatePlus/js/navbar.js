@@ -158,10 +158,6 @@ function constructUnitView(mouse) {
 					aTr.appendChild(aTh);
 					var aTh = document.createElement("th");
 						aTh.className = "col-md-1";
-						aTh.textContent = "Type";
-					aTr.appendChild(aTh);
-					var aTh = document.createElement("th");
-						aTh.className = "col-md-1";
 						aTh.textContent = "Time";
 					aTr.appendChild(aTh);
 					var aTh = document.createElement("th");
@@ -205,25 +201,23 @@ function constructUnitView(mouse) {
 function populateUnitTable(array, student, type) {
 	//loop through the units
 	console.log("item type: " + type);
+	var d = 0;
     for (var i = 0; i < array.length; i++) {
     	console.log("array type: " + array[i].type);
 		console.log (array[i].type.toString() == type.toString());
 		if (array[i].type.substring(0, type.length) === type) {
+			d = d + 1;
 			var aTr = document.createElement('tr');
 			//checkbox status
 			//status
 			aTr.appendChild(getAvailability(array[i], student));
 			//activity number
 			var item = document.createElement('td');
-			item.appendChild(document.createTextNode((i + 1)));
+			item.appendChild(document.createTextNode((d)));
 			aTr.appendChild(item);
 			//Day
 			var item = document.createElement('td');
 			item.appendChild(document.createTextNode(array[i].day));
-			aTr.appendChild(item);
-			//Type
-			var item = document.createElement('td');
-			item.appendChild(document.createTextNode(array[i].type));
 			aTr.appendChild(item);
 			//Time
 			var item = document.createElement('td');
