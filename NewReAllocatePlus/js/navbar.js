@@ -9,6 +9,7 @@ var getUnitClassesHttpRequest = null;
 
 httpGetAsync("https://reallocateplus.herokuapp.com/students", function(data){
 	student = JSON.parse(data)[0];
+	populateProfile(student);
 	console.log(student)});
 
 httpGetAsync("https://reallocateplus.herokuapp.com/units", function(data){
@@ -31,6 +32,18 @@ function clearRightSection() {
 	while (dashboard.firstChild) {
 		dashboard.removeChild(dashboard.firstChild);
 	}
+}
+
+function populateProfile(student){
+	var aH4 = document.createElement("h4");
+		var aS = document.createElement("strong");
+			aS.textContent = student.firstname.concat(" ".concat(student.lastname));
+		aH4.appendChild(aS);
+	document.getElementById("profileDetails").appendChild(aH4);
+	
+	var aP = document.createElement("p");
+		aP.textContent = student.username.concat("@student.monash.edu");
+	document.getElementById("profileDetails").appendChild(aP);
 }
 
 function populateMenu(array) {
@@ -333,6 +346,7 @@ function getCheckbox(unit, student) {
 	status.appendChild(checkbox);
 	return status;
 }
+
 function removeAllRequests()
 {
 
