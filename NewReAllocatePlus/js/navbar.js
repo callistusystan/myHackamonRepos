@@ -5,6 +5,7 @@
 
 // for now, get the first student
 var student;
+var units;
 var getUnitClassesHttpRequest = null;
 
 httpGetAsync("https://reallocateplus.herokuapp.com/students", function(data){
@@ -13,9 +14,96 @@ httpGetAsync("https://reallocateplus.herokuapp.com/students", function(data){
 	console.log(student)});
 
 httpGetAsync("https://reallocateplus.herokuapp.com/units", function(data){
+	units = JSON.parse(data);
 	console.log(data);
 	populateMenu(JSON.parse(data))});
+	
+createHomeView();
 
+document.getElementById("myRequestsButton").addEventListener("click", createRequestView);
+document.getElementById("homeButton").addEventListener("click", createHomeView);
+
+function createHomeView() {
+	clearRightSection();
+	var aH2 = document.createElement("h2");
+		aH2.textContent = "Welcome to the new and improved Allocate+!";
+	document.getElementById("rightSection").appendChild(aH2);
+	document.getElementById("rightSection").appendChild(document.createElement("hr"));
+
+    var aH3 = document.createElement("h3");
+        aH3.textContent = "Modes and dates";
+    document.getElementById("rightSection").appendChild(aH3);
+
+    var aP = document.createElement("p");
+        var aTable = document.createElement("table");
+            var aTr = document.createElement("tr");
+                var aTd = document.createElement("td");
+                    var aS = document.createElement("strong");
+                        aS.textContent = "Preference mode:";
+                aTd.appendChild(aS);
+            aTr.appendChild(aTd);
+                var aTd = document.createElement("td");
+                    aS.textContent = "Enter your preferred times for each activity";
+            aTr.appendChild(aTd);
+
+        aTable.appendChild(aTr);
+		
+            var aTr = document.createElement("tr");
+                var aTd = document.createElement("td");
+                    var aS = document.createElement("strong");
+                        aS.textContent = "Sort:";
+                aTd.appendChild(aS);
+            aTr.appendChild(aTd);
+                var aTd = document.createElement("td");
+                    aS.textContent = "The system closes to sort all entries";
+            aTr.appendChild(aTd);
+
+        aTable.appendChild(aTr);
+		
+            var aTr = document.createElement("tr");
+                var aTd = document.createElement("td");
+                    var aS = document.createElement("strong");
+                        aS.textContent = "Adjustment mode:";
+                aTd.appendChild(aS);
+            aTr.appendChild(aTd);
+                var aTd = document.createElement("td");
+                    aS.textContent = "Make changes and fix any clashing classes";
+            aTr.appendChild(aTd);
+
+        aTable.appendChild(aTr);
+		
+	aP.appendChild(aTable);
+	
+	document.getElementById("rightSection").appendChild(aP);
+	document.getElementById("rightSection").appendChild(document.createElement("hr"));
+	
+	var aP = document.createElement("p");
+		aP.textContent = "If you haven't used Allocate+ before, you may want to take the " + "Quick Tour: Allocate+".bold() + ". You can find it in the " + "Allocate+ Help?".bold() + " menu to the right of your screen (not available on mobile devices).";
+	document.getElementById("rightSection").appendChild(aP);
+	
+}
+	
+function createRequestView() {
+	clearRightSection();
+	
+	var aH2 = document.createElement("h2");
+		aH2.textContent = "My Requests";
+		
+	document.getElementById("rightSection").appendChild(aH2);
+		
+	for (var i = 0;i < units.length;i++){
+		document.getElementById("rightSection").appendChild(document.createElement("hr"));
+		var aH3 = document.createElement("h3");
+			aH3.textContent = units[i].code;
+		document.getElementById("rightSection").appendChild(aH3);
+		
+		var aH3 = document.createElement("h3");
+			aH3.textContent = units[i].title;
+		document.getElementById("rightSection").appendChild(aH3);
+	}
+		
+}
+	
 function httpGetAsync(theUrl, callback) {
 	var test = new XMLHttpRequest();
 	test.onreadystatechange = function() {
@@ -223,7 +311,6 @@ function constructUnitView(mouse) {
 			getUnitClassesHttpRequest = null;
 		});
 	}
-
 }
 
 function populateUnitTable(array, student, type) {
@@ -359,7 +446,6 @@ function removeAllRequests()
 			checkboxes[i].checked = false;
 		}
 	}
-
 }
 
 function submitRequests()

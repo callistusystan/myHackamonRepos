@@ -68,6 +68,7 @@
 
 #profileDetails {
     text-transform: uppercase;
+	word-wrap: break-word;
 }
 
 #units {
@@ -99,6 +100,7 @@
 	padding: 0;
     height: 722px;
     color: #004185;
+	overflow: auto;
 }
 
 #rightSection h2, h3 {
