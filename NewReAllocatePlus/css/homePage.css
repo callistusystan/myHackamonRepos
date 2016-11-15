@@ -113,6 +113,11 @@
     color: #004185;
 }
 
+#rightSection h5{
+	padding-left: 15px;
+    color: #004185;
+}
+
 #rightSection p {
 	padding-left: 15px;
 }
@@ -129,8 +134,6 @@
     opacity: 0.6;
     border-color: gray;
 }
-
-
 
 #rightSection .unitHeader {
     margin: 0px;

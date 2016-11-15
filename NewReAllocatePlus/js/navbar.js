@@ -197,7 +197,8 @@ function getStudentRequest(student, unit, classType){
 }
 
 function getNoOfStudentRequests(student){
-	return 0;
+	var d = 0;
+	return d;
 }
 	
 function httpGetAsync(theUrl, callback) {
@@ -325,6 +326,7 @@ function constructUnitView(mouse) {
 	// div unitHeader with 3 h4 tags
 	var unitHeader = document.createElement("div");
 	unitHeader.className = "unitHeader";
+	unitHeader.id = "unitHeader";
 
 	var aH4 = document.createElement("h4");
 	aH4.textContent = mouse.target.parentNode.getElementsByTagName("h4")[0].textContent;
@@ -498,13 +500,13 @@ function getAvailability(unit, student) {
 		aP.setAttribute("style", "color:red;text-align:center;");
 		status.appendChild(aP);
 		return status;
-
 	}
 	else{
 		var link = document.createElement('a');
 		link.setAttribute("style", "text-align:center;");
 		link.appendChild(document.createTextNode('Available'));
 		link.href = "#";
+		link.addEventListener("click", changeToAvailableClass);
 		status.appendChild(link);
 	}
 	return status;
@@ -559,10 +561,116 @@ function getCheckbox(unit, student) {
 					var link = document.createElement('a');
 					link.appendChild(document.createTextNode('Request'));
 					link.href = "#";
+					link.addEventListener("click", requestFullClass);
 					status.appendChild(link);
 				}	
 			}
 	return status;
+}
+
+function getUnitClassUuidByActivity(unitCode, activityNo) {
+	var d=0;
+	for (var i=0;i<allClasses.length;i++){
+		if (allClasses[i].unitUuid == unitCode ){
+			d+=1;
+			if (d == String(activityNo)){
+				return allClasses[i].uuid;
+			}
+		}
+	}
+}
+
+function changeToAvailableClass(mouse){
+	// unit code
+	var unitCode = document.getElementById("unitHeader").getElementsByTagName("h4")[0].textContent;
+	
+	// classType
+	var classType = document.getElementById("unitHeader").getElementsByTagName("h4")[2].textContent;
+	
+	// activity no
+	var activityNo = mouse.target.parentNode.parentNode.getElementsByTagName("td")[0].textContent;	
+	console.log("abs" + activityNo);
+	
+	// unit uuid for the activity
+	var unitUuid = getUnitClassUuidByActivity(unitCode, activityNo);
+	
+	console.log("a" + getUnitClassUuidByActivity(unitCode, activityNo));
+	
+	// change class
+	// remove request if exist
+	
+	createAllocatedMessage(student, unitCode, classType, activityNo);
+}
+
+function createAllocatedMessage(student, unitCode, classType, activityNo) {
+	clearUnitTable();
+	console.log(activityNo);
+	var aH5 = document.createElement("h5");
+	aH5.textContent = "You have been successfully changed to Activity " + String(activityNo) + " of " + unitCode + " " + String(classType) + ".";
+	document.getElementById("rightSection").appendChild(aH5);
+}
+
+function requestFullClass(mouse){
+	// unit code
+	var unitCode = document.getElementById("unitHeader").getElementsByTagName("h4")[0].textContent;
+	
+	// classType
+	var classType = document.getElementById("unitHeader").getElementsByTagName("h4")[2].textContent;
+	
+	// activity no
+	var activityNo = mouse.target.parentNode.parentNode.getElementsByTagName("td")[0].textContent;	
+	console.log("abs" + activityNo);
+	
+	// unit uuid for the activity
+	var unitUuid = getUnitClassUuidByActivity(unitCode, activityNo);
+	
+	console.log("a" + getUnitClassUuidByActivity(unitCode, activityNo));
+	
+	// make request for class
+	
+	createRequestedMessage(student, unitCode, classType, activityNo);
+}
+
+function createRequestedMessage(student, unitCode, classType, activityNo) {
+	clearUnitTable();
+	console.log(activityNo);
+	var aH5 = document.createElement("h5");
+	aH5.textContent = "You have been placed on the queue for Activity " + String(activityNo) + " of " + unitCode + " " + String(classType) + ".";
+	document.getElementById("rightSection").appendChild(aH5);
+}
+
+function unrequestFullClass(mouse){
+	// unit code
+	var unitCode = document.getElementById("unitHeader").getElementsByTagName("h4")[0].textContent;
+	
+	// classType
+	var classType = document.getElementById("unitHeader").getElementsByTagName("h4")[2].textContent;
+	
+	// activity no
+	var activityNo = mouse.target.parentNode.parentNode.getElementsByTagName("td")[0].textContent;	
+	console.log("abs" + activityNo);
+	
+	// unit uuid for the activity
+	var unitUuid = getUnitClassUuidByActivity(unitCode, activityNo);
+	
+	console.log("a" + getUnitClassUuidByActivity(unitCode, activityNo));
+	
+	// cancel request for class
+	
+	createRequestedMessage(student, unitCode, classType, activityNo);
+}
+
+function createCancelledRequestedMessage(student, unitCode, classType, activityNo) {
+	clearUnitTable();
+	console.log(activityNo);
+	var aH5 = document.createElement("h5");
+	aH5.textContent = "Your request for Activity " + String(activityNo) + " of " + unitCode + " " + String(classType) + "has been removed.";
+	document.getElementById("rightSection").appendChild(aH5);
+}
+
+function clearUnitTable(){
+	var rightSection = document.getElementById("rightSection");
+	rightSection.removeChild(rightSection.getElementsByClassName("container-fluid")[0]);
 }
 
 function removeAllRequests()
