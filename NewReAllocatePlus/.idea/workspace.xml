@@ -36,11 +36,9 @@
       <file leaf-file-name="navbar.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/navbar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="925">
-              <caret line="337" column="4" selection-start-line="337" selection-start-column="4" selection-end-line="337" selection-end-column="4" />
-              <folding>
-                <element signature="e#1517#3031#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="546">
+              <caret line="273" column="41" selection-start-line="273" selection-start-column="41" selection-end-line="273" selection-end-column="41" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -48,8 +46,8 @@
       <file leaf-file-name="unitDetails.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/unitDetails.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="385">
+              <caret line="39" column="33" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="33" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -242,12 +240,12 @@
       <updated>1479181712176</updated>
       <workItem from="1479181713443" duration="2716000" />
       <workItem from="1479185844325" duration="749000" />
-      <workItem from="1479186631283" duration="1665000" />
+      <workItem from="1479186631283" duration="2045000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5130000" />
+    <option name="totallyTimeSpent" value="5510000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="2164" height="1402" extended-state="0" />
@@ -299,9 +297,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#1517#3031#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -338,23 +334,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/navbar.js">
+    <entry file="file://$PROJECT_DIR$/js/unitDetails.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="925">
-          <caret line="337" column="4" selection-start-line="337" selection-start-column="4" selection-end-line="337" selection-end-column="4" />
+        <state relative-caret-position="385">
+          <caret line="39" column="33" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="33" />
           <folding>
-            <element signature="e#1517#3031#0" expanded="false" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/unitDetails.js">
+    <entry file="file://$PROJECT_DIR$/js/navbar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="546">
+          <caret line="273" column="41" selection-start-line="273" selection-start-column="41" selection-end-line="273" selection-end-column="41" />
+          <folding />
         </state>
       </provider>
     </entry>
