@@ -15,18 +15,20 @@ httpGetAsync("https://reallocateplus.herokuapp.com/students", function(data){
 
 httpGetAsync("https://reallocateplus.herokuapp.com/units", function(data){
 	units = JSON.parse(data);
-	console.log(data);
+	
+	// change to number of actual requests
+	document.getElementById("myRequestsButton").innerHTML = 'My Requests <span class="badge">' + units.length + "</span>";
 	populateMenu(JSON.parse(data))});
 	
 createHomeView();
 
-document.getElementById("myRequestsButton").addEventListener("click", createRequestView);
 document.getElementById("homeButton").addEventListener("click", createHomeView);
+document.getElementById("myRequestsButton").addEventListener("click", createRequestView);
 
 function createHomeView() {
 	clearRightSection();
 	var aH2 = document.createElement("h2");
-		aH2.textContent = "Welcome to the new and improved Allocate+!";
+		aH2.textContent = "Welcome to the new and improved Allocate+";
 	document.getElementById("rightSection").appendChild(aH2);
 	document.getElementById("rightSection").appendChild(document.createElement("hr"));
 
@@ -99,7 +101,99 @@ function createRequestView() {
 		var aH3 = document.createElement("h3");
 			aH3.textContent = units[i].title;
 		document.getElementById("rightSection").appendChild(aH3);
+		
+		// create table for request
+		
+		/*if (){
+		} 
+		else*/ {
+			var container = document.createElement("div");
+			container.className = "container-fluid col";
+
+			var tableR = document.createElement("div");
+			tableR.className = "table-responsive";
+			tableR.id = "tableResponsive";
+			var tableB = document.createElement("table");
+			tableB.className = "table table-bordered requestTable";
+
+			var aTr = document.createElement("tr");
+			var aTh = document.createElement("th");
+			aTh.className = "col-md-4";
+			aTh.textContent = "Class Type";
+			aTr.appendChild(aTh);
+			var aTh = document.createElement("th");
+			aTh.className = "col-md-4";
+			aTh.textContent = "Current Allocation";
+			aTr.appendChild(aTh);
+			var aTh = document.createElement("th");
+			aTh.className = "col-md-4";
+			aTh.textContent = "Request";
+			aTr.appendChild(aTh);
+			tableB.appendChild(aTr);
+
+			populateRequestTable(tableB, student, units[i]);
+			tableR.appendChild(tableB);
+			container.appendChild(tableR);
+
+			document.getElementById("rightSection").appendChild(container);
+		}
 	}
+}
+
+function populateRequestTable(table, student, unit) {
+	for (var i=0;i < unit.required.length; i++){
+		var aTr = document.createElement("tr");
+			var aTd = document.createElement("td");
+			aTd.textContent = unit.required[i];
+		aTr.appendChild(aTd);
+		var aTd = document.createElement("td");
+			aTd.textContent = getStudentAllocation(student, unit, unit.required[i]);
+		aTr.appendChild(aTd);
+		var aTd = document.createElement("td");
+			aTd.textContent = getStudentRequest(student, unit, unit.required[i]);
+		aTr.appendChild(aTd);
+		table.appendChild(aTr);
+	}
+}
+
+function getStudentAllocation(student, unit, classType){
+	// populate table
+	/*if(getUnitClassesHttpRequest == null) {
+		getUnitClassesHttpRequest = httpGetAsync("https://reallocateplus.herokuapp.com/classes?unit=" + unit.code, function (data) {
+			console.log(data);
+			populateUnitTable(JSON.parse(data), student, mouse.target.textContent.substring(2));
+			getUnitClassesHttpRequest = null;
+		});
+	}*/
+	console.log(classType);
+	console.log(student.classes);
+	console.log(unit);
+	for (var i =0; i < student.classes.length; i++) {
+		if (unit.uuid == student.classes[i]) {;
+			//return unit.uuid;
+		}
+	}
+	return "A class";
+}
+
+function getStudentRequest(student, unit, classType){
+	// populate table
+	/*if(getUnitClassesHttpRequest == null) {
+		getUnitClassesHttpRequest = httpGetAsync("https://reallocateplus.herokuapp.com/classes?unit=" + unit.code, function (data) {
+			console.log(data);
+			populateUnitTable(JSON.parse(data), student, mouse.target.textContent.substring(2));
+			getUnitClassesHttpRequest = null;
+		});
+	}*/
+	console.log(classType);
+	console.log(student.classes);
+	console.log(unit);
+	for (var i =0; i < student.classes.length; i++) {
+		if (unit.uuid == student.classes[i]) {;
+			//return unit.uuid;
+		}
+	}
+	return "None";
 }
 	
 function httpGetAsync(theUrl, callback) {
@@ -216,9 +310,7 @@ function populateMenu(array) {
 
 			aA.addEventListener("click", constructUnitView);
 			aDiv.appendChild(aA);
-
 		}
-
 		document.getElementById('units').appendChild(aDiv);
 	}
 }
@@ -260,10 +352,6 @@ function constructUnitView(mouse) {
 	var aTr = document.createElement("tr");
 	var aTh = document.createElement("th");
 	aTh.className = "col-md-1";
-	aTh.textContent = "Availability";
-	aTr.appendChild(aTh);
-	var aTh = document.createElement("th");
-	aTh.className = "col-md-1";
 	aTh.textContent = "Activity";
 	aTr.appendChild(aTh);
 	var aTh = document.createElement("th");
@@ -289,6 +377,10 @@ function constructUnitView(mouse) {
 	var aTh = document.createElement("th");
 	aTh.className = "col-md-1";
 	aTh.textContent = "Duration";
+	aTr.appendChild(aTh);
+	var aTh = document.createElement("th");
+	aTh.className = "col-md-1";
+	aTh.textContent = "Availability";
 	aTr.appendChild(aTh);
 	var aTh = document.createElement("th");
 	aTh.className = "col-md-1";
@@ -322,8 +414,6 @@ function populateUnitTable(array, student, type) {
 			d = d + 1;
 			var aTr = document.createElement('tr');
 			//checkbox status
-			//status
-			aTr.appendChild(getAvailability(array[i], student));
 			//activity number
 			var item = document.createElement('td');
 			item.appendChild(document.createTextNode((d)));
@@ -352,11 +442,14 @@ function populateUnitTable(array, student, type) {
 			var item = document.createElement('td');
 			item.appendChild(document.createTextNode(array[i].duration));
 			aTr.appendChild(item);
+			//status
+			aTr.appendChild(getAvailability(array[i], student));
 			aTr.appendChild(getCheckbox(array[i], student));
 
 			document.getElementById("unitTable").appendChild(aTr);
 		}
 	}
+	/*
 	var aButton = document.createElement("button");
 	var aA = document.createElement("a");
 	aA.href = "#";
@@ -378,6 +471,7 @@ function populateUnitTable(array, student, type) {
 	aButton.addEventListener("click", submitRequests);
 
 	document.getElementById("tableResponsive").appendChild(aButton);
+	*/
 
 }
 
@@ -413,6 +507,7 @@ function getAvailability(unit, student) {
 }
 
 function getCheckbox(unit, student) {
+	/*
 	var status = document.createElement('td');
 	status.className = "center";
 	var checkbox = document.createElement('input');
@@ -429,6 +524,40 @@ function getCheckbox(unit, student) {
 		}
 	}
 	status.appendChild(checkbox);
+	*/	
+			
+	var status = document.createElement('td');
+		var aP = document.createElement("p");
+			for (var i =0; i < student.classes.length; i++) {
+				if (unit.uuid == student.classes[i]) {
+					aP.textContent = "Already allocated";
+					aP.setAttribute("style", "color:gray;text-align:center;");
+					status.appendChild(aP);
+					return status;
+				}
+			}
+			if (unit.noStudents < unit.capacity){
+					aP.textContent = "Available now";
+					aP.setAttribute("style", "color:gray;text-align:center;");
+					status.appendChild(aP);
+					return status;
+			}
+			else {
+				var link = document.createElement('a');
+				link.setAttribute("style", "text-align:center;");
+				/* this changes the allocation that has been requested to allow to cancel
+				if (requested){
+					link.appendChild(document.createTextNode('Cancel Request'));
+					link.href = "#";
+					status.appendChild(link);
+				}
+				else */{
+					var link = document.createElement('a');
+					link.appendChild(document.createTextNode('Request'));
+					link.href = "#";
+					status.appendChild(link);
+				}	
+			}
 	return status;
 }
 

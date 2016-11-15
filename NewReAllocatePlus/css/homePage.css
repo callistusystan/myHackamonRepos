@@ -184,3 +184,8 @@
 #unitTable tr td input {
 	margin: 0 auto;
 }
+
+.requestTable {
+	padding: 0 0 0 15px;
+	width: 50%;
+} 
