@@ -5,6 +5,8 @@
 
 // for now, get the first student
 var student;
+var getUnitClassesHttpRequest = null;
+
 httpGetAsync("https://reallocateplus.herokuapp.com/students", function(data){
     student = JSON.parse(data)[0];
     console.log(student)});
@@ -12,7 +14,7 @@ httpGetAsync("https://reallocateplus.herokuapp.com/students", function(data){
 httpGetAsync("https://reallocateplus.herokuapp.com/units", function(data){
     console.log(data);
     populateMenu(JSON.parse(data))});
-	
+
 function httpGetAsync(theUrl, callback) {
     var test = new XMLHttpRequest();
     test.onreadystatechange = function() {
@@ -158,22 +160,30 @@ function constructUnitView(mouse) {
 	document.getElementById("rightSection").appendChild(container);
 	
 	// populate table
-	httpGetAsync("https://reallocateplus.herokuapp.com/classes?unit=" + mouse.target.parentNode.getElementsByTagName("h4")[0].textContent, function (data) {
-		console.log(data);
-		populateUnitTable(JSON.parse(data), student);
-	});
+	if(getUnitClassesHttpRequest == null) {
+		getUnitClassesHttpRequest = httpGetAsync("https://reallocateplus.herokuapp.com/classes?unit=" + mouse.target.parentNode.getElementsByTagName("h4")[0].textContent, function (data) {
+			console.log(data);
+			populateUnitTable(JSON.parse(data), student, mouse.target.textContent);
+			getUnitClassesHttpRequest = null;
+		});
+	}
+
 }
 
-function populateUnitTable(array, student) {
+function populateUnitTable(array, student, type) {
 	//loop through the units
+	console.log("item type: " + type);
     for (var i = 0; i < array.length; i++) {
-        var aTr = document.createElement('tr');
+    	console.log("array type: " + array[i].type);
+		console.log (array[i].type === type.toString());
+		if (array[i].type === type) {
+			var aTr = document.createElement('tr');
 			//checkbox status
 			//status
 			aTr.appendChild(getAvailability(array[i], student));
 			//activity number
 			var item = document.createElement('td');
-			item.appendChild(document.createTextNode((i+1)));
+			item.appendChild(document.createTextNode((i + 1)));
 			aTr.appendChild(item);
 			//Day
 			var item = document.createElement('td');
@@ -204,27 +214,28 @@ function populateUnitTable(array, student) {
 			item.appendChild(document.createTextNode(array[i].duration));
 			aTr.appendChild(item);
 			aTr.appendChild(getCheckbox(array[i], student));
-		
-		document.getElementById("unitTable").appendChild(aTr);
-    }
-	var aButton = document.createElement("button");
+
+			document.getElementById("unitTable").appendChild(aTr);
+		}
+	}
+		var aButton = document.createElement("button");
 		var aA = document.createElement("a");
-			aA.href="#";
-			aA.setAttribute("style", "text-decoration: none;color:white");
-			aA.textContent = "Remove All Requests";
-		
+		aA.href = "#";
+		aA.setAttribute("style", "text-decoration: none;color:white");
+		aA.textContent = "Remove All Requests";
+
 		aButton.appendChild(aA);
-	document.getElementById("tableResponsive").appendChild(aButton);
-	
-	var aButton = document.createElement("button");
+		document.getElementById("tableResponsive").appendChild(aButton);
+
+		var aButton = document.createElement("button");
 		var aA = document.createElement("a");
-			aA.href="#";
-			aA.setAttribute("style", "text-decoration: none;color:white");
-			aA.textContent = "Submit Requests";
-		
+		aA.href = "#";
+		aA.setAttribute("style", "text-decoration: none;color:white");
+		aA.textContent = "Submit Requests";
+
 		aButton.appendChild(aA);
-	document.getElementById("tableResponsive").appendChild(aButton);
-	
+		document.getElementById("tableResponsive").appendChild(aButton);
+
 }
 
 function getAvailability(unit, student) {
