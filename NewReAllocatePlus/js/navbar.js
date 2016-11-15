@@ -51,7 +51,7 @@ function populateMenu(array) {
 			aH5.textContent = array[i].title;
 			aDiv.appendChild(aH5);
 		
-				// create an a element for lecture
+				/*// create an a element for lecture
 				for (var j=0;j<array[i].required.length;j++){
 					if (array[i].required[j].includes("Lecture")){
 						var aA = document.createElement('a');
@@ -103,7 +103,22 @@ function populateMenu(array) {
 						aDiv.appendChild(aA);
 						break;
 					}					
-				}
+				}*/
+		//create the elements for the unit classes
+		for (var j=0;j<array[i].required.length;j++) {
+
+				var aA = document.createElement('a');
+
+				aA.href = "#";
+				aA.className = "list-group-item";
+				aA.textContent = "\u00bb " + array[i].required[j].toString();
+
+				// create the function when clicked
+
+				aA.addEventListener("click", constructUnitView);
+				aDiv.appendChild(aA);
+
+		}
 				
 			document.getElementById('units').appendChild(aDiv);
     }
