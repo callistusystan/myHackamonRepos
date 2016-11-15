@@ -43,6 +43,10 @@
     color:white;
 }
 
+#profile {
+	margin-right: 15px;
+}
+
 #profile, #rightSection {
     border: 1px solid #a9b9c5;
     border-radius: 3px;
@@ -50,6 +54,7 @@
 
 #enrolment {
     margin-top: 15px;
+	margin-right: 15px;
     border: 1px solid #a9b9c5;
     border-radius: 3px;
 }
@@ -100,7 +105,6 @@
 	padding: 0;
     height: 722px;
     color: #004185;
-	overflow: auto;
 }
 
 #rightSection h2, h3 {
