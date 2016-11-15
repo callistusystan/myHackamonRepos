@@ -78,9 +78,8 @@ function createHomeView() {
 	document.getElementById("rightSection").appendChild(document.createElement("hr"));
 	
 	var aP = document.createElement("p");
-		aP.textContent = "If you haven't used Allocate+ before, you may want to take the " + "Quick Tour: Allocate+".bold() + ". You can find it in the " + "Allocate+ Help?".bold() + " menu to the right of your screen (not available on mobile devices).";
+		aP.innerHTML = "If you haven't used Allocate+ before, you may want to take the <strong>Quick Tour : Allocate+</strong>. You can find it in the <strong>Allocate+ Help</strong> menu to the right of your screen (not available on mobile devices).";
 	document.getElementById("rightSection").appendChild(aP);
-	
 }
 	
 function createRequestView() {
@@ -101,7 +100,6 @@ function createRequestView() {
 			aH3.textContent = units[i].title;
 		document.getElementById("rightSection").appendChild(aH3);
 	}
-		
 }
 	
 function httpGetAsync(theUrl, callback) {
