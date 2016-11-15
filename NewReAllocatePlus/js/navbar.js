@@ -6,6 +6,7 @@
 // for now, get the first student
 var student;
 var units;
+var allClasses;
 var getUnitClassesHttpRequest = null;
 
 httpGetAsync("https://reallocateplus.herokuapp.com/students", function(data){
@@ -17,9 +18,12 @@ httpGetAsync("https://reallocateplus.herokuapp.com/units", function(data){
 	units = JSON.parse(data);
 	
 	// change to number of actual requests
-	document.getElementById("myRequestsButton").innerHTML = 'My Requests <span class="badge">' + units.length + "</span>";
+	document.getElementById("myRequestsButton").innerHTML = 'My Requests <span class="badge">' + getNoOfStudentRequests(student) + "</span>";
 	populateMenu(JSON.parse(data))});
-	
+
+httpGetAsync("https://reallocateplus.herokuapp.com/classes", function(data){
+	allClasses = JSON.parse(data)});
+
 createHomeView();
 
 document.getElementById("homeButton").addEventListener("click", createHomeView);
@@ -157,43 +161,43 @@ function populateRequestTable(table, student, unit) {
 }
 
 function getStudentAllocation(student, unit, classType){
-	// populate table
-	/*if(getUnitClassesHttpRequest == null) {
-		getUnitClassesHttpRequest = httpGetAsync("https://reallocateplus.herokuapp.com/classes?unit=" + unit.code, function (data) {
-			console.log(data);
-			populateUnitTable(JSON.parse(data), student, mouse.target.textContent.substring(2));
-			getUnitClassesHttpRequest = null;
-		});
-	}*/
-	console.log(classType);
-	console.log(student.classes);
-	console.log(unit);
-	for (var i =0; i < student.classes.length; i++) {
-		if (unit.uuid == student.classes[i]) {;
-			//return unit.uuid;
+	var d = 0;
+	for (var i =0; i < allClasses.length; i++) {
+		console.log("hello");
+		console.log(student.classes.indexOf(allClasses[i].uuid));
+		console.log(allClasses[i].type);
+		
+		// check each class's unit code, type and if student is enrolled in it
+		if (allClasses[i].unitUuid == unit.uuid && allClasses[i].type.includes(classType)){
+			d += 1;
+			if (student.classes.indexOf(allClasses[i].uuid) > -1) {
+				return "Activity " + d + " (" + allClasses[i].day + " " + allClasses[i].time + ")";
+			}
 		}
 	}
-	return "A class";
 }
 
 function getStudentRequest(student, unit, classType){
-	// populate table
-	/*if(getUnitClassesHttpRequest == null) {
-		getUnitClassesHttpRequest = httpGetAsync("https://reallocateplus.herokuapp.com/classes?unit=" + unit.code, function (data) {
-			console.log(data);
-			populateUnitTable(JSON.parse(data), student, mouse.target.textContent.substring(2));
-			getUnitClassesHttpRequest = null;
-		});
-	}*/
-	console.log(classType);
-	console.log(student.classes);
-	console.log(unit);
-	for (var i =0; i < student.classes.length; i++) {
-		if (unit.uuid == student.classes[i]) {;
-			//return unit.uuid;
+	var d = 0;
+	/*
+	for (var i =0; i < allClasses.length; i++) {
+		console.log("hello");
+		console.log(student.classes.indexOf(allClasses[i].uuid));
+		console.log(allClasses[i].type);
+		
+		// check each class's unit code, type and if student is enrolled in it
+		if (allClasses[i].unitUuid == unit.uuid && allClasses[i].type.includes(classType)){
+			d += 1;
+			if (student.classes.indexOf(allClasses[i].uuid) > -1) {
+				return "Activity " + d + " (" + allClasses[i].day + " " + allClasses[i].time + ")";
+			}
 		}
-	}
+	}*/
 	return "None";
+}
+
+function getNoOfStudentRequests(student){
+	return 0;
 }
 	
 function httpGetAsync(theUrl, callback) {
