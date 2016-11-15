@@ -163,7 +163,7 @@ function constructUnitView(mouse) {
 	if(getUnitClassesHttpRequest == null) {
 		getUnitClassesHttpRequest = httpGetAsync("https://reallocateplus.herokuapp.com/classes?unit=" + mouse.target.parentNode.getElementsByTagName("h4")[0].textContent, function (data) {
 			console.log(data);
-			populateUnitTable(JSON.parse(data), student, mouse.target.textContent);
+			populateUnitTable(JSON.parse(data), student, mouse.target.textContent.substring(2));
 			getUnitClassesHttpRequest = null;
 		});
 	}
@@ -175,8 +175,8 @@ function populateUnitTable(array, student, type) {
 	console.log("item type: " + type);
     for (var i = 0; i < array.length; i++) {
     	console.log("array type: " + array[i].type);
-		console.log (array[i].type === type.toString());
-		if (array[i].type === type) {
+		console.log (array[i].type.toString() == type.toString());
+		if (array[i].type.substring(0, type.length) === type) {
 			var aTr = document.createElement('tr');
 			//checkbox status
 			//status
