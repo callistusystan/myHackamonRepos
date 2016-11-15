@@ -35,13 +35,15 @@ function clearRightSection() {
 
 function populateMenu(array) {
     for (var i = 0; i < array.length; i++) {
+		console.log(array[i].required);
+		console.log()
 		// create a div to store unit 
 		var aDiv = document.createElement('div');
 			aDiv.className = "unit";
 			
 			console.log(aDiv.className);
 			
-			// the unit div consists of h4, h5, and 2 default a tags for lab and lecture
+			// the unit div consists of h4, h5, and a tags for lecture, tutorial, labs
 			var aH4 = document.createElement('h4');
 			aH4.textContent = array[i].code;
 			aDiv.appendChild(aH4);
@@ -49,29 +51,59 @@ function populateMenu(array) {
 			aH5.textContent = array[i].title;
 			aDiv.appendChild(aH5);
 		
-				// create an a element for lab
-				var aA = document.createElement('a');
-				
-					aA.href = "#";
-					aA.className = "list-group-item";
-					aA.textContent = "\u00bb Laboratory";
-					console.log(aA.childNodes);
-				
-				// create the function when clicked			
-				
-				aA.addEventListener("click", constructUnitView);
-				aDiv.appendChild(aA);
-				
 				// create an a element for lecture
-				var aA = document.createElement('a');
-				
-					aA.href = "#";
-					aA.className = "list-group-item";
-					aA.textContent = "\u00bb Lecture";
-				aDiv.appendChild(aA);
-				
-				aA.addEventListener("click", constructUnitView);
-				aDiv.appendChild(aA);
+				for (var j=0;j<array[i].required.length;j++){
+					if (array[i].required[j].includes("Lecture")){
+						var aA = document.createElement('a');
+						
+							aA.href = "#";
+							aA.className = "list-group-item";
+							aA.textContent = "\u00bb Lecture";
+							console.log(aA.childNodes);
+						
+						// create the function when clicked			
+						
+						aA.addEventListener("click", constructUnitView);
+						aDiv.appendChild(aA);
+						break;
+					}					
+				}
+		
+				// create an a element for tute
+				for (var j=0;j<array[i].required.length;j++){
+					if (array[i].required[j].includes("Tutorial")){
+						var aA = document.createElement('a');
+						
+							aA.href = "#";
+							aA.className = "list-group-item";
+							aA.textContent = "\u00bb Tutorial";
+							console.log(aA.childNodes);
+						
+						// create the function when clicked			
+						
+						aA.addEventListener("click", constructUnitView);
+						aDiv.appendChild(aA);
+						break;
+					}					
+				}
+		
+				// create an a element for lab
+				for (var j=0;j<array[i].required.length;j++){
+					if (array[i].required[j].includes("Lab")){
+						var aA = document.createElement('a');
+						
+							aA.href = "#";
+							aA.className = "list-group-item";
+							aA.textContent = "\u00bb Laboratory";
+							console.log(aA.childNodes);
+						
+						// create the function when clicked			
+						
+						aA.addEventListener("click", constructUnitView);
+						aDiv.appendChild(aA);
+						break;
+					}					
+				}
 				
 			document.getElementById('units').appendChild(aDiv);
     }
