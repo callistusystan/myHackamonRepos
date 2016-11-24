@@ -254,10 +254,13 @@ function httpGetAsync(theUrl, callback) {
 function httpPostAsync(theUrl, callback) {
 	var test = new XMLHttpRequest();
 	test.onreadystatechange = function() {
-		if (test.readyState == 4 && test.status == 200)
 			callback(test.responseText);
 	};
+	test.withCredentials = false;
 	test.open("POST", theUrl, true); // true for asynchronous
+
+	test.setRequestHeader('Access-Control-Allow-Headers', '*');
+	test.setRequestHeader("Access-Control-Allow-Origin", "*");
 	test.send(null);
 	return test;
 
@@ -596,13 +599,6 @@ function getCheckbox(unit, student) {
 					return status;
 				}
 			}
-			if (unit.noStudents < unit.capacity){
-					aP.textContent = "Available now";
-					aP.setAttribute("style", "color:gray;text-align:center;");
-					status.appendChild(aP);
-					return status;
-			}
-			else {
 				var link = document.createElement('a');
 				link.setAttribute("style", "text-align:center;");
 				/* this changes the allocation that has been requested to allow to cancel
@@ -617,8 +613,8 @@ function getCheckbox(unit, student) {
 					link.href = "#";
 					link.addEventListener("click", requestFullClass);
 					status.appendChild(link);
-				}	
-			}
+				}
+
 	return status;
 }
 
@@ -687,12 +683,11 @@ function requestFullClass(mouse){
 
 	// make request for class
 
-	var http = new XMLHttpRequest();
 	var url = "https://reallocateplus.herokuapp.com/swaprequest/new";
-	var params = "?studentUuid="+student.uuid+"&unitUuid="+unitCode+"&currentClassUuid="+currentClassUuid+"&requestedClasses=["+requestedClassUuid+"]";
+	var params = "?studentUuid="+student.uuid+"&unitUuid="+unitCode+"&currentClassUuid="+currentClassUuid+"&requestedClasses="+requestedClassUuid;
 	console.log(params);
 	httpPostAsync(url + params, function(data) {
-		var jsonBody = JSON.parse(data);
+		console.log("FURKIN PINGAS MATE.");
 		createRequestedMessage(student, unitCode, classType, activityNo);
 	});
 
